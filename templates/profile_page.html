@@ -1,0 +1,15 @@
+{% extends "home.html" %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+<h2>Profile</h2>
+<form method="post">{% csrf_token %}
+    {{ form }}
+    <button class="btn btn-success ml-2" type="submit">add recipes</button>
+    <button class="btn btn-success ml-2" type="submit">see your recipes</button>
+</form>
+{% endblock content %}
