@@ -6,10 +6,18 @@
     <br>
     <br>
     <br>
-<h2>Profile</h2>
-<form method="post">{% csrf_token %}
-    {{ form }}
-    <button class="btn btn-success ml-2" type="submit">add recipes</button>
-    <button class="btn btn-success ml-2" type="submit">see your recipes</button>
-</form>
+    <h2>Profile</h2>
+    <div class="row">
+        <div class="col-sm-6">
+            <ul class="list-group">
+                <li class="list-group-item"><a class="nav-link active" href="{% url 'add-recipe' %}">New recipes</a></li>
+                <li class="list-group-item"><a class="nav-link active" href="{% url 'see-recipe' %}">See your recipes</a></li>
+                <li class="list-group-item"><a class="nav-link active" href="">See Favourites</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            {% block new_recipe %}
+                {% endblock %}
+        </div>
+    </div>
 {% endblock content %}

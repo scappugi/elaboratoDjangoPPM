@@ -1,0 +1,23 @@
+{% extends "profile_page.html" %}
+{% block new_recipe %}
+
+
+
+        <div class="card">
+          <div class="card-header">
+            <h4>New Recipes, {{ user.get_username }}</h4>
+          </div>
+          <div class="card-body">
+            <form method="post" action="{% url 'add-recipe'  %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br>
+                <br>
+               <input type="submit" value="Submit" class="btn btn-secondary">
+                    {% if submitted %}
+                       success
+                    {% endif %}
+            </form>
+    </div>
+  </div>
+{% endblock %}

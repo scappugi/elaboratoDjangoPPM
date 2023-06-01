@@ -1,0 +1,33 @@
+{% extends "profile_page.html" %}
+{% block new_recipe %}
+
+
+
+    <div class="card">
+        <div class="card-header">
+            <h4>Your Recipes, {{ user.get_username }}</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                    <div class="col-md-4">
+                        <p>Recipes:</p>
+                        {% for dati_utente in dati_utente_queryset %}
+                        <p>{{ dati_utente.recipesName }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-4">
+                        <p>category: </p>
+                        {% for dati_utente in dati_utente_queryset %}
+                        <p>{{ dati_utente.category }}</p>
+                         {% endfor %}
+                    </div>
+                    <div class="col-md-4">
+                        <p>Difficult: </p>
+                        {% for dati_utente in dati_utente_queryset %}
+                        <p>{{ dati_utente.recipesDifficult }}</p>
+                         {% endfor %}
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}
