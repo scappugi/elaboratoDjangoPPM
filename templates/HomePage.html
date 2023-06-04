@@ -1,0 +1,15 @@
+{% extends "home.html" %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="row">
+      <div class="col-md-12">
+          <h1>Home Page</h1>
+          <br><br>
+          <a class="btn btn-secondary" href="{% url 'home_recipes' %}" role="button">click for see and search recipes</a>
+      </div>
+    </div>
+</div>
+{% endblock %}

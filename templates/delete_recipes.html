@@ -1,0 +1,22 @@
+{% extends "profile_page.html" %}
+{% block new_recipe %}
+    <div class="card">
+        <form method="post" action="{% url 'delete-recipes' object.recipesName %}">
+            <div class="card-header">
+                <h4>Recipe: <a style="font-size: 20px ; font-style: italic">{{ object.recipesName }}</a></h4>
+            </div>
+            <div class="card-body">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <p>You' ll lose this recipe forever.</p>
+                <br>
+                <br>
+                <br>
+                <div class="container d-flex align-items-center justify-content-center">
+                    <input type="submit" value="Delete" class="btn btn-secondary">
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+{% endblock %}

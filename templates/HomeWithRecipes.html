@@ -1,0 +1,49 @@
+{% extends 'home.html' %}
+{% block title %}HomePage{% endblock title %}
+{% block content %}
+    <div class="text-end">
+        <br>
+            <a class="btn btn-secondary" href="{% url 'home_researching_recipes' %}" role="button">if you searching a recipes click here</a>
+    </div>
+    <br><br>
+    <div class="row">
+        {% for dati_query in dati_ricette_queryset %}
+            <div class="col-md-4">
+                <br>
+                <br>
+                <br>
+                <div class="card">
+                    <div class="card-header">
+                        <p style="font-size: 20px">Name: <a style="font-weight: bold"> {{ dati_query.recipesName }}</a>
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <p style="font-size: 18px">Difficult: <a
+                                    style="font-weight: bold">{{ dati_query.recipesDifficult }}</a></p>
+                        </div>
+                        <div class="form-group">
+                            <p style="font-size: 18px">Category: <a
+                                    style="font-weight: bold">{{ dati_query.category }}</a></p>
+                        </div>
+                        <div class="form-group">
+                            <p style="font-size: 18px">Creator: <a
+                                    style="font-style: italic; font-size: 14px">{{ dati_query.users }}</a></p>
+                        </div>
+                        <a class="btn btn-secondary" href="" role="button">view more</a>
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+

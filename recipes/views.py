@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 from .forms import RecipeForm
 from django.http import HttpResponseRedirect
@@ -36,12 +36,14 @@ def add_recipe(request):
 @login_required
 def see_recipes(request):
     username = request.user.username  # recupero username
+    dati_utente_queryset = Recipe.objects.filter(users__username=username)
+    return render(request, 'see_recipes.html', {'dati_utente_queryset': dati_utente_queryset})
 
-    try:
-        dati_utente_queryset = Recipe.objects.filter(users__username=username)
-        return render(request, 'see_recipes.html', {'dati_utente_queryset': dati_utente_queryset})
 
-    except ObjectDoesNotExist:
-        error_message = f"Recipes object not found for username: {username}"
-        return render(request, 'see_recipes.html', {'error_message': error_message})
-
+@login_required
+def delete_recipes(request, recipesName):
+    objject = get_object_or_404(Recipe, recipesName=recipesName)
+    if request.method == 'POST':
+        objject.delete()
+        return redirect('see-recipe')
+    return render(request, 'delete_recipes.html', {'object': objject})
