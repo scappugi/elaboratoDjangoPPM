@@ -27,8 +27,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','vRJaGPHSvNL9ztFt2LdMXBTAmfamigp
 #DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'FALSE'
 
-ALLOWED_HOSTS = ["djangorailway-production.up.railway.app", "127.0.0.1", "localhost"]
-CSRF_TRUSTED_ORIGINS = ['https://djangorailway-production.up.railway.app']
+ALLOWED_HOSTS = ["web-production-06141.up.railway.app", "127.0.0.1", "localhost"]
+CSRF_TRUSTED_ORIGINS = ['https://web-production-06141.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [
