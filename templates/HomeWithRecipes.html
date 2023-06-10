@@ -1,17 +1,45 @@
 {% extends 'home.html' %}
 {% block title %}HomePage{% endblock title %}
 {% block content %}
-    <div class="text-end">
-        <br>
-            <a class="btn btn-secondary" href="{% url 'home_researching_recipes' %}" role="button">if you searching a recipes click here</a>
+    <style>
+        .input-field, .btn-outline-secondary {
+            display: flex;
+            height: 30px;
+            align-items: center;
+
+        }
+
+        .form-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .text-end {
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Recipes</h1>
+        </div>
+        <div class="col-md-6">
+            <br>
+            <div class="text-end">
+                <form action="{% url 'home_researching_recipes' %}" method="get" class="form-container">
+                    <input type="search" name='search' placeholder="Search Recipes" style="border-radius: 5px"
+                           class="input-field">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </form>
+                <br>
+            </div>
+        </div>
     </div>
     <br><br>
     <div class="row">
         {% for dati_query in dati_ricette_queryset %}
             <div class="col-md-4">
-                <br>
-                <br>
-                <br>
+
                 <div class="card">
                     <div class="card-header">
                         <p style="font-size: 20px">Name: <a style="font-weight: bold"> {{ dati_query.recipesName }}</a>
@@ -30,7 +58,8 @@
                             <p style="font-size: 18px">Creator: <a
                                     style="font-style: italic; font-size: 14px">{{ dati_query.users }}</a></p>
                         </div>
-                        <a class="btn btn-secondary" href="" role="button">view more</a>
+                        <a class="btn btn-secondary" href="{% url 'home_see_recipe' dati_query.id %}" role="button">view
+                            more</a>
 
                     </div>
                 </div>

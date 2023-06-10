@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
+
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,13 +21,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ds!ut0%!rh!mc%!_clw1*ae5rx*p!53f3f!-osyk36t$vyd#*p'
-
+#SECRET_KEY = 'django-insecure-ds!ut0%!rh!mc%!_clw1*ae5rx*p!53f3f!-osyk36t$vyd#*p'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','vRJaGPHSvNL9ztFt2LdMXBTAmfamigpKBYe77mnH0jM')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'FALSE'
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["djangorailway-production.up.railway.app", "127.0.0.1", "localhost"]
+CSRF_TRUSTED_ORIGINS = ['https://djangorailway-production.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [
@@ -80,6 +83,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -114,6 +119,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
 # LOGIN_REDIRECT_URL = 'home' #fa redirect sulla pagina home del mio sito
 LOGOUT_REDIRECT_URL = 'home'
 # Default primary key field type

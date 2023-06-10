@@ -17,7 +17,7 @@ def add_recipe(request):
     submitted = False
     if request.method == "POST":
         form = RecipeForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() :
             set_user = form.save(commit=False)
             set_user.users = request.user
             set_user.save()
@@ -44,6 +44,37 @@ def see_recipes(request):
 def delete_recipes(request, recipesName):
     objject = get_object_or_404(Recipe, recipesName=recipesName)
     if request.method == 'POST':
-        objject.delete()
+        if request.user.username == objject.users.username:  # controllo sul proprietario della ricetta
+            objject.delete()
         return redirect('see-recipe')
     return render(request, 'delete_recipes.html', {'object': objject})
+
+
+@login_required
+def favorite_recipes(request, id):  # aggiunge
+    # istanza della ricetta
+    recipe = Recipe.objects.get(id=id)
+    recipe.favorite.add(request.user)  # aggiunta
+    return redirect('home_see_recipe', id=id)
+
+
+@login_required
+def see_favorite_recipes(request):
+    preferiti = request.user.favorite_recipe.all()
+    return render(request, 'see_favorite_recipes.html', {'preferiti': preferiti})
+
+
+@login_required
+def delete_favorite_recipes(request, id):
+    oggetto = get_object_or_404(Recipe, id=id)
+    if request.method == 'POST':
+        request.user.favorite_recipe.remove(oggetto)
+        return redirect('see-favorite-recipes')
+    return render(request, 'delete_favorite_recipes.html', {'object': oggetto})
+
+
+@login_required
+def fast_delete_favorite_recipes(request, id):
+    oggetto = get_object_or_404(Recipe, id=id)
+    request.user.favorite_recipe.remove(oggetto)
+    return redirect('home_see_recipe', id=id)

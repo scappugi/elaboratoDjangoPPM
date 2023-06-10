@@ -1,0 +1,23 @@
+{% extends 'home.html' %}
+{% block content %}
+    <div class="card">
+    <div class="text-end">
+     <button type="button" class="btn-close" aria-label="Close" style="background-color: #5C636A" onclick="window.location.href = '{% url 'home_recipes' %}';"></button>
+    </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ recipe.recipesName }}</h5>
+    <p class="card-text">{{ recipe.description }}</p>
+      <form method='post'>
+      {% csrf_token %}
+          {% if is_favorite%}
+              <a href="{% url 'fast-delete-favorite-recipes' recipe.id %}" class="btn btn-danger">remove Favourite</a>
+
+              {% else %}
+              <a href="{% url 'favorite-recipes' recipe.id %}" class="btn btn-secondary">add Favourite</a>
+
+          {% endif %}
+      </form>
+
+  </div>
+</div>
+{% endblock %}

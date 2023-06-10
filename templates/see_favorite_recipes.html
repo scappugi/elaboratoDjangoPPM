@@ -1,0 +1,37 @@
+{% extends "profile_page.html" %}
+{% block new_recipe %}
+
+
+
+    <div class="card">
+        <div class="card-header">
+            <h4>Your Favorite Recipes, <a style="font-size: 20px ; font-style: italic">{{ user.get_username }}</a></h4>
+        </div>
+        <div class="card-body">
+        <div class="row">
+            <div class="col-lg-3">
+                <p>Recipes:</p></div>
+            <div class="col-lg-3">
+                <p>Category:</p></div>
+            <div class="col-lg-3">
+                <p>difficult:</p></div>
+        </div>
+            {% for dati_utente in preferiti %}
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p>{{ dati_utente.recipesName }}</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{ dati_utente.category }}</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{ dati_utente.recipesDifficult }}</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <a class="btn btn-secondary" href="{% url 'delete-favorite-recipes' dati_utente.id %}" role="button">Remove</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
