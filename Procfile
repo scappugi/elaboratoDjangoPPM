@@ -1,1 +1,1 @@
-web: gunicorn elaboratoDjangoPPM.wsgi --log-file-
+web: gunicorn elaboratoDjangoPPM.wsgi --log-file -
