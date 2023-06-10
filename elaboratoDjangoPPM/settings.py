@@ -23,12 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ds!ut0%!rh!mc%!_clw1*ae5rx*p!53f3f!-osyk36t$vyd#*p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
+
+ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ['https://web-production-06141.up.railway.app']
 CSRF_ALLOWED_ORIGINS = ['https://web-production-06141.up.railway.app']
 CSRF_COOKIE_DOMAIN = "web-production-06141.up.railway.app"
-
-ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
