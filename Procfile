@@ -1,1 +1,1 @@
-web: python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn 'elaboratoDjangoPPM.wsgi'
+web: python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn elaboratoDjangoPPM.wsgi --log-file -
