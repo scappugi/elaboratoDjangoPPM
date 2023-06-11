@@ -3,12 +3,17 @@
 {% block title %}Profile{% endblock title %}
 
 {% block content %}
-<div class="container d-flex align-items-center justify-content-center">
-    <div class="row">
-      <div class="col-md-12">
-          <h1>Home Page</h1>
-          <br><br>
-          <a class="btn btn-secondary" href="{% url 'home_recipes' %}" role="button">click for see and search recipes</a>
+    <style>
+        .btn-outline-secondary:hover{
+            background-color: lightgray;
+        }
+    </style>
+<div class="container d-flex align-items-center justify-content-center" style="background-color: lightgray">
+    <div class="row" >
+      <div class="col-md-12" style="margin-bottom: 12px">
+          <h1 style="text-align: center; border: 5px solid gray">Home Page</h1>
+          <br>
+          <a class="btn btn-outline-dark" href="{% url 'home_recipes' %}" role="button">click for see and search recipes</a>
       </div>
     </div>
 </div>
