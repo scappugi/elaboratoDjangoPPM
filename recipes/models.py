@@ -9,3 +9,4 @@ class Recipe(models.Model):
     users = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     description = models.CharField(max_length=2000, null=True)  # deve consentire una breve descrizione del piatto
     favorite = models.ManyToManyField(User, related_name='favorite_recipe')
+    images = models.ImageField(null=True, upload_to='recipe_images/', blank=True)

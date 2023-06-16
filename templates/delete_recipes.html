@@ -1,7 +1,7 @@
 {% extends "profile_page.html" %}
 {% block new_recipe %}
     <div class="card">
-        <form method="post" action="{% url 'delete-recipes' object.recipesName %}">
+        <form method="post" action="{% url 'delete-recipes' object.id %}">
             <div class="card-header">
                 <h4>Recipe: <a style="font-size: 20px ; font-style: italic">{{ object.recipesName }}</a></h4>
             </div>

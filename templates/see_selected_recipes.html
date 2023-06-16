@@ -7,6 +7,9 @@
   <div class="card-body">
     <h5 class="card-title">{{ recipe.recipesName }}</h5>
     <p class="card-text">{{ recipe.description }}</p>
+  {% if recipe.images %}
+    <img src="{{ recipe.images.url }}">
+  {% endif %}
       <form method='post'>
       {% csrf_token %}
           {% if is_favorite%}

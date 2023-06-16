@@ -28,7 +28,7 @@
                         <p>{{ dati_utente.recipesDifficult }}</p>
                     </div>
                     <div class="col-lg-3">
-                        <a class="btn btn-secondary" href="{% url 'delete-recipes' dati_utente.recipesName %}" role="button">delete</a>
+                        <a class="btn btn-secondary" href="{% url 'delete-recipes' dati_utente.id %}" role="button">delete</a>
                     </div>
                 </div>
             {% endfor %}

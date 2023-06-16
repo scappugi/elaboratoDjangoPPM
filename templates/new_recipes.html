@@ -5,7 +5,7 @@
             <h4>New Recipes, {{ user.get_username }}</h4>
           </div>
           <div class="card-body">
-            <form method="post" action="{% url 'add-recipe'  %}">
+            <form method="post" action="{% url 'add-recipe'  %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <br>

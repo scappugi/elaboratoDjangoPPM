@@ -16,7 +16,7 @@ class RecipeView(TemplateView):
 def add_recipe(request):
     submitted = False
     if request.method == "POST":
-        form = RecipeForm(request.POST)
+        form = RecipeForm(request.POST, request.FILES)
         if form.is_valid() :
             set_user = form.save(commit=False)
             set_user.users = request.user
@@ -41,8 +41,8 @@ def see_recipes(request):
 
 
 @login_required
-def delete_recipes(request, recipesName):
-    objject = get_object_or_404(Recipe, recipesName=recipesName)
+def delete_recipes(request, id):
+    objject = get_object_or_404(Recipe, id=id)
     if request.method == 'POST':
         if request.user.username == objject.users.username:  # controllo sul proprietario della ricetta
             objject.delete()

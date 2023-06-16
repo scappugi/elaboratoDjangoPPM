@@ -20,8 +20,6 @@ class RecipeForm(ModelForm):
             ('Dessert', 'Dessert'),
         )
         model = Recipe
-        fields = ('recipesName', 'category', 'recipesDifficult', 'description')
+        fields = ('recipesName', 'category', 'recipesDifficult', 'description', 'images')
         widgets = {'recipesDifficult': forms.Select(choices=CHOICES), 'category': forms.Select(choices=CHOICES_CATEGORY)}
-
-
 
